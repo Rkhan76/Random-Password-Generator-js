@@ -6,7 +6,15 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
-
+    <style>
+      /* Add this style to handle hover and copy */
+      .result:hover .result__info.right {
+        content: 'hello';
+        opacity: 0.7;
+        transform: translateY(0);
+        cursor: pointer;
+      }
+    </style>
     <title>
       Random Strong Password Generator using JavaScript with Source Code -
       @code.scientist x @codingtorque
@@ -17,14 +25,10 @@
     <div class="container">
       <h2 class="title">Password Generator</h2>
       <div class="result">
-        <div class="result__title field-title">Generated Password</div>
-        <div class="result__info right">click to copy</div>
-        <div class="result__info left">copied</div>
         <div class="result__viewbox" id="result">CLICK GENERATE</div>
-        <button id="copy-btn"><i class="far fa-copy"></i></button>
       </div>
       <div class="length range__slider" data-min="4" data-max="32">
-        <div class="length__title field-title" data-length="0">length:</div>
+        <div class="length__title field-title" data-length="8">length:</div>
         <input id="slider" type="range" min="4" max="32" value="8" />
       </div>
 
@@ -50,87 +54,6 @@
 
       <button class="btn generate" id="generate">Generate Password</button>
     </div>
-    <script>
-      let slider = document.getElementById('slider')
-      let lengthTitle = document.querySelector('.length__title')
-      let uppercaseCheckbox = document.getElementById('uppercase')
-      let lowercaseCheckbox = document.getElementById('lowercase')
-      let numberCheckbox = document.getElementById('number')
-      let symbolCheckbox = document.getElementById('symbol')
-
-      const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-      const lowercase = 'abcdefghijklmnopqrstuvwxyz'
-      const specialSymbol = "!@#$%^&*()_-+={}[]|\:;'<>,.?/"
-      const number = '0123456789'
-      let GeneratedPassword = uppercase + lowercase + number
-      let length = parseInt(slider.value)
-
-      slider.addEventListener('input', function () {
-        lengthTitle.setAttribute('data-length', slider.value)
-        length = parseInt(slider.value)
-      })
-
-       uppercaseCheckbox.addEventListener('input', () => {
-        if (uppercaseCheckbox.checked === true) {
-          GeneratedPassword += uppercase
-        }
-      })
-
-      lowercase.addEventListener('input', () => {
-        if (lowercaseCheckbox.checked === false) {
-          GeneratedPassword -= lowercase
-        }
-      })
-      numberCheckbox.addEventListener('input', () => {
-        if (numberCheckbox.checked === false) {
-          GeneratedPassword -= number
-        }
-      })
-      symbolCheckbox.addEventListener('input', () => {
-        if (symbolCheckbox.checked === false) {
-          GeneratedPassword -= specialSymbol
-        }
-      })
-     
-
-      const generate = document.getElementById('generate')
-
-      generate.addEventListener('click', () => {
-        let array = [uppercase, lowercase, number, specialSymbol]
-
-        for (let i = 0; i < length; i++) {
-          if (uppercaseCheckbox.checked) {
-            console.log(
-              array[0].charAt(
-                Math.floor(Math.random() * uppercase.length - 1) + 1
-              )
-            )
-          }
-          if (lowercaseCheckbox.checked) {
-            GeneratedPassword += lowercase.charAt(
-              Math.floor(Math.random() * lowercase.length) + 1
-            )
-            console.log(GeneratedPassword)
-            continue
-          }
-          if (numberCheckbox.checked) {
-            GeneratedPassword += number.charAt(
-              Math.floor(Math.random() * number.length) + 1
-            )
-            console.log(GeneratedPassword)
-            continue
-          }
-          if (symbolCheckbox.checked) {
-            GeneratedPassword += specialSymbol.charAt(
-              Math.floor(Math.random() * specialSymbol.length) + 1
-            )
-            console.log(GeneratedPassword)
-            continue
-          }
-        }
-        console.log(GeneratedPassword.length)
-      })
-    </script>
     <script src="script.js"></script>
   </body>
 </html>
