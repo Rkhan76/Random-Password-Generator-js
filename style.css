@@ -40,6 +40,7 @@ button {
   width: 100%;
   height: 65px;
   overflow: hidden;
+  cursor: pointer;
 }
 .result__info {
   position: absolute;

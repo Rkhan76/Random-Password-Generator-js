@@ -83,6 +83,7 @@ copyfunction.addEventListener('mouseout', function () {
 })
 
 showResult.addEventListener('click', () => {
+  if(Password == "") return
   navigator.clipboard.writeText(Password)
   alert('copied')
 })
